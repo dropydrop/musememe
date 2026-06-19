@@ -406,10 +406,10 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                Générateur de Mèmes <span className="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 rounded-full font-medium">IA Pulse</span>
+                Générateur de Mèmes <span className="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 rounded-full font-medium">MuseMeme</span>
               </h1>
               <p className="text-xs text-slate-400">
-                Alimenté par Gemini 3.5 Flash — Réponses 100% en français
+                Alimenté par IA : Gemini 3.5 Flash
               </p>
             </div>
           </div>
@@ -419,7 +419,7 @@ export default function App() {
               href="#templates-section"
               className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition"
             >
-              Modèles populaires
+              Modèles de Mèmes populaires
             </a>
             <button 
               onClick={handleRandomizeText}
@@ -430,7 +430,7 @@ export default function App() {
               <RefreshCw className="w-4 h-4 text-amber-400 shrink-0" />
               <div className="flex flex-col">
                 <span className="text-sm font-bold leading-tight">Texte Aléatoire</span>
-                <span className="text-[10px] text-amber-400 opacity-80 font-normal leading-none mt-0.5">Sans API / Hors-ligne (100+ phrases)</span>
+                <span className="text-[10px] text-amber-400 opacity-80 font-normal leading-none mt-0.5">Sans IA / Hors-ligne (+100 phrases)</span>
               </div>
             </button>
           </div>
@@ -490,7 +490,7 @@ export default function App() {
                   onClick={downloadMeme}
                   className="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 cursor-pointer"
                 >
-                  <Download className="w-3.5 h-3.5" /> Télécharger directement
+                  <Download className="w-3.5 h-3.5" /> Télécharger
                 </button>
               </div>
             </div>
@@ -817,7 +817,7 @@ export default function App() {
             <div>
               <h3 className="text-lg font-bold text-white flex items-center gap-2">
                 <Hash className="w-5 h-5 text-amber-500" />
-                <span>Sélectionner un modèle tendance ( templates )</span>
+                <span>Sélectionner un modèle populaire</span>
               </h3>
               <p className="text-sm text-slate-400">
                 Choisissez parmi nos classiques d'Internet, ou importez vos propres images ci-dessus

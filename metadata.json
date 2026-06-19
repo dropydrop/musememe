@@ -1,0 +1,6 @@
+{
+  "name": "AI Meme Generator",
+  "description": "Un générateur de mèmes alimenté par l'IA. Créez des légendes hilarantes en français instantanément grâce à notre Magic Caption Button !",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -395,20 +395,20 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9FAFB] text-[#1F2937] font-sans antialiased flex flex-col" id="meme-generator-root">
+    <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased flex flex-col" id="meme-generator-root">
       
       {/* Upper Brand Header */}
-      <header className="border-b border-[#E5E7EB] bg-white sticky top-0 z-40 shadow-xs" id="app-header">
+      <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 shadow-xs" id="app-header">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="bg-amber-500 text-white p-2.5 rounded-xl flex items-center justify-center shadow-md shadow-amber-500/10">
               <Flame className="w-6 h-6 animate-pulse" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold tracking-tight text-[#111827] flex items-center gap-2">
-                Générateur de Mèmes <span className="bg-amber-100 text-amber-800 text-xs px-2.5 py-0.5 rounded-full font-medium">IA Pulse</span>
+              <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
+                Générateur de Mèmes <span className="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 rounded-full font-medium">IA Pulse</span>
               </h1>
-              <p className="text-xs text-[#6B7280]">
+              <p className="text-xs text-slate-400">
                 Alimenté par Gemini 3.5 Flash — Réponses 100% en français
               </p>
             </div>
@@ -417,20 +417,20 @@ export default function App() {
           <div className="flex items-center gap-4">
             <a 
               href="#templates-section"
-              className="px-4 py-2 text-sm font-medium text-[#4B5563] hover:text-[#111827] transition"
+              className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition"
             >
               Modèles populaires
             </a>
             <button 
               onClick={handleRandomizeText}
               title="Générer un texte comique instantanément sans consommer de quota d'API (100% local/hors-ligne)"
-              className="flex items-center gap-3 px-4 py-2 bg-amber-50 hover:bg-amber-100 border border-amber-200 text-[#78350F] rounded-xl hover:scale-[1.01] active:scale-95 transition-all text-left shadow-xs cursor-pointer"
+              className="flex items-center gap-3 px-4 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 rounded-xl hover:scale-[1.01] active:scale-95 transition-all text-left shadow-xs cursor-pointer"
               id="randomize-text-btn"
             >
-              <RefreshCw className="w-4 h-4 text-amber-600 shrink-0" />
+              <RefreshCw className="w-4 h-4 text-amber-400 shrink-0" />
               <div className="flex flex-col">
                 <span className="text-sm font-bold leading-tight">Texte Aléatoire</span>
-                <span className="text-[10px] text-amber-800 opacity-80 font-normal leading-none mt-0.5">Sans API / Hors-ligne (100+ phrases)</span>
+                <span className="text-[10px] text-amber-400 opacity-80 font-normal leading-none mt-0.5">Sans API / Hors-ligne (100+ phrases)</span>
               </div>
             </button>
           </div>
@@ -445,20 +445,20 @@ export default function App() {
           
           {/* Left Column: Meme Studio Screen (Canvas Display) - span 7 */}
           <section className="lg:col-span-7 flex flex-col gap-4" id="preview-section">
-            <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-sm flex flex-col gap-4">
+            <div className="bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-sm flex flex-col gap-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs uppercase tracking-wider font-semibold text-[#9CA3AF] flex items-center gap-1.5">
+                <span className="text-xs uppercase tracking-wider font-semibold text-slate-400 flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Canvas de Rendu Live
                 </span>
-                <span className="text-xs text-[#6B7280] font-mono">
+                <span className="text-xs text-slate-500 font-mono">
                   {selectedTemplateId === "custom" ? "Image importée" : `Modèle : ${selectedTemplateId}`}
                 </span>
               </div>
 
               {/* Dynamic Aspect Ratio Box containing the Canvas */}
               <div 
-                className={`relative bg-[#111827] rounded-xl overflow-hidden min-h-[350px] md:min-h-[480px] max-h-[600px] flex items-center justify-center border-2 border-dashed transition-all duration-300 ${
-                  isDragOver ? "border-amber-500 bg-[#1E1B4B]" : "border-transparent"
+                className={`relative bg-slate-950 rounded-xl overflow-hidden min-h-[350px] md:min-h-[480px] max-h-[600px] flex items-center justify-center border-2 border-dashed transition-all duration-300 ${
+                  isDragOver ? "border-amber-500 bg-amber-500/10" : "border-transparent"
                 }`}
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
@@ -483,12 +483,12 @@ export default function App() {
               </div>
 
               {/* Quick Canvas Helpers */}
-              <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-[#6B7280] bg-[#F9FAFB] p-3 rounded-lg border border-[#F3F4F6]">
-                <p>💡 <span className="font-semibold text-[#4B5563]">Truc:</span> Double-cliquez pour saisir vos textes dans le volet de droite.</p>
+              <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400 bg-slate-950 p-3 rounded-lg border border-slate-850">
+                <p>💡 <span className="font-semibold text-slate-300">Truc:</span> Double-cliquez pour saisir vos textes dans le volet de droite.</p>
                 <button
                   type="button"
                   onClick={downloadMeme}
-                  className="text-amber-600 hover:text-amber-700 font-semibold flex items-center gap-1"
+                  className="text-amber-400 hover:text-amber-300 font-semibold flex items-center gap-1 cursor-pointer"
                 >
                   <Download className="w-3.5 h-3.5" /> Télécharger directement
                 </button>
@@ -595,19 +595,19 @@ export default function App() {
 
           {/* Right Column: Custom Control Deck Panel - span 5 */}
           <section className="lg:col-span-5 flex flex-col gap-6" id="editor-controls-section">
-            <div className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-sm space-y-6">
+            <div className="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-sm space-y-6">
               
-              <div className="flex items-center gap-2 pb-4 border-b border-[#F3F4F6]">
+              <div className="flex items-center gap-2 pb-4 border-b border-slate-800">
                 <Sliders className="w-5 h-5 text-amber-500" />
-                <h3 className="text-lg font-bold text-[#111827]">Configuration & Édition</h3>
+                <h3 className="text-lg font-bold text-white">Configuration & Édition</h3>
               </div>
 
               {/* Caption Inputs */}
               <div className="space-y-4">
                 <div className="space-y-2">
-                  <label htmlFor="top-text-input" className="block text-sm font-semibold text-[#374151] flex justify-between">
+                  <label htmlFor="top-text-input" className="block text-sm font-semibold text-slate-300 flex justify-between">
                     <span>Texte Supérieur (Haut)</span>
-                    <span className="text-xs text-[#9CA3AF] font-mono">{topText.length}/100</span>
+                    <span className="text-xs text-slate-500 font-mono">{topText.length}/100</span>
                   </label>
                   <textarea
                     id="top-text-input"
@@ -615,14 +615,14 @@ export default function App() {
                     onChange={(e) => setTopText(e.target.value)}
                     placeholder="Saisir le texte du haut..."
                     rows={2}
-                    className="w-full px-3.5 py-2.5 bg-[#F9FAFB] border border-[#D1D5DB] rounded-xl text-sm focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all font-mono resize-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-100 focus:bg-slate-900 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all font-mono resize-none"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="bottom-text-input" className="block text-sm font-semibold text-[#374151] flex justify-between">
+                  <label htmlFor="bottom-text-input" className="block text-sm font-semibold text-slate-300 flex justify-between">
                     <span>Texte Inférieur (Bas)</span>
-                    <span className="text-xs text-[#9CA3AF] font-mono">{bottomText.length}/100</span>
+                    <span className="text-xs text-slate-500 font-mono">{bottomText.length}/100</span>
                   </label>
                   <textarea
                     id="bottom-text-input"
@@ -630,14 +630,14 @@ export default function App() {
                     onChange={(e) => setBottomText(e.target.value)}
                     placeholder="Saisir le texte du bas..."
                     rows={2}
-                    className="w-full px-3.5 py-2.5 bg-[#F9FAFB] border border-[#D1D5DB] rounded-xl text-sm focus:bg-white focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all font-mono resize-none"
+                    className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-100 focus:bg-slate-900 focus:outline-hidden focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all font-mono resize-none"
                   />
                 </div>
               </div>
 
               {/* Sliders and Styling Toggles */}
               <div className="space-y-4 pt-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-[#9CA3AF] flex items-center gap-1.5">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                   <FontIcon className="w-3.5 h-3.5" /> Personnalisation visuelle
                 </h4>
 
@@ -645,9 +645,9 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {/* Slider: Text size */}
                   <div className="space-y-1.5">
-                    <label htmlFor="text-size-range" className="block text-xs font-medium text-[#4B5563] flex justify-between">
+                    <label htmlFor="text-size-range" className="block text-xs font-medium text-slate-400 flex justify-between">
                       <span>Taille du texte</span>
-                      <span className="font-mono text-amber-600 font-bold">{textSize}px</span>
+                      <span className="font-mono text-amber-400 font-bold">{textSize}px</span>
                     </label>
                     <input
                       id="text-size-range"
@@ -656,20 +656,20 @@ export default function App() {
                       max="100"
                       value={textSize}
                       onChange={(e) => setTextSize(parseInt(e.target.value))}
-                      className="w-full h-1.5 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer accent-amber-500"
+                      className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
                     />
                   </div>
 
                   {/* Toggle: Case sensitivity */}
                   <div className="space-y-1.5">
-                    <span className="block text-xs font-medium text-[#4B5563]">Format des lettres</span>
+                    <span className="block text-xs font-medium text-slate-400">Format des lettres</span>
                     <button
                       type="button"
                       onClick={() => setIsUppercase(!isUppercase)}
-                      className={`w-full py-2.5 px-3 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-2 ${
+                      className={`w-full py-2.5 px-3 rounded-xl text-xs font-semibold border transition flex items-center justify-center gap-2 cursor-pointer ${
                         isUppercase 
                           ? "bg-amber-500 text-white border-amber-500" 
-                          : "bg-white text-[#4B5563] border-[#D1D5DB] hover:bg-[#F9FAFB]"
+                          : "bg-slate-950 text-slate-300 border-slate-800 hover:bg-slate-900"
                       }`}
                     >
                       <span>{isUppercase ? "MAJUSCULES ACTIVÉES" : "Format Libre / Minuscules"}</span>
@@ -681,38 +681,38 @@ export default function App() {
                 <div className="grid grid-cols-2 gap-4">
                   {/* Text Color */}
                   <div className="space-y-1.5">
-                    <span className="block text-xs font-medium text-[#4B5563]">Couleur du texte</span>
+                    <span className="block text-xs font-medium text-slate-400">Couleur du texte</span>
                     <div className="flex items-center gap-2">
                       <input
                         type="color"
                         value={textColor}
                         onChange={(e) => setTextColor(e.target.value)}
-                        className="w-10 h-10 border border-[#D1D5DB] rounded-lg p-0 cursor-pointer overflow-hidden"
+                        className="w-10 h-10 border border-slate-800 rounded-lg p-0 cursor-pointer overflow-hidden"
                       />
                       <input
                         type="text"
                         value={textColor.toUpperCase()}
                         onChange={(e) => setTextColor(e.target.value)}
-                        className="flex-1 min-w-0 px-2 py-2 bg-[#F9FAFB] border border-[#D1D5DB] rounded-lg text-xs font-mono uppercase"
+                        className="flex-1 min-w-0 px-2 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-mono uppercase text-slate-200"
                       />
                     </div>
                   </div>
 
                   {/* Stroke Border Color */}
                   <div className="space-y-1.5">
-                    <span className="block text-xs font-medium text-[#4B5563]">Couleur de bordure</span>
+                    <span className="block text-xs font-medium text-slate-400">Couleur de bordure</span>
                     <div className="flex items-center gap-2">
                       <input
                         type="color"
                         value={strokeColor}
                         onChange={(e) => setStrokeColor(e.target.value)}
-                        className="w-10 h-10 border border-[#D1D5DB] rounded-lg p-0 cursor-pointer overflow-hidden"
+                        className="w-10 h-10 border border-slate-800 rounded-lg p-0 cursor-pointer overflow-hidden"
                       />
                       <input
                         type="text"
                         value={strokeColor.toUpperCase()}
                         onChange={(e) => setStrokeColor(e.target.value)}
-                        className="flex-1 min-w-0 px-2 py-2 bg-[#F9FAFB] border border-[#D1D5DB] rounded-lg text-xs font-mono uppercase"
+                        className="flex-1 min-w-0 px-2 py-2 bg-slate-950 border border-slate-800 rounded-lg text-xs font-mono uppercase text-slate-200"
                       />
                     </div>
                   </div>
@@ -721,9 +721,9 @@ export default function App() {
                 {/* Position adjusters */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1.5">
-                    <label htmlFor="top-position-range" className="block text-xs font-medium text-[#4B5563] flex justify-between">
+                    <label htmlFor="top-position-range" className="block text-xs font-medium text-slate-400 flex justify-between">
                       <span>Espacement Haut</span>
-                      <span className="font-mono text-[#6B7280]">{textPositionTop}%</span>
+                      <span className="font-mono text-slate-500">{textPositionTop}%</span>
                     </label>
                     <input
                       id="top-position-range"
@@ -732,14 +732,14 @@ export default function App() {
                       max="40"
                       value={textPositionTop}
                       onChange={(e) => setTextPositionTop(parseInt(e.target.value))}
-                      className="w-full h-1.5 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer accent-amber-500"
+                      className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
                     />
                   </div>
 
                   <div className="space-y-1.5">
-                    <label htmlFor="bottom-position-range" className="block text-xs font-medium text-[#4B5563] flex justify-between">
+                    <label htmlFor="bottom-position-range" className="block text-xs font-medium text-slate-400 flex justify-between">
                       <span>Espacement Bas</span>
-                      <span className="font-mono text-[#6B7280]">{textPositionBottom}%</span>
+                      <span className="font-mono text-slate-500">{textPositionBottom}%</span>
                     </label>
                     <input
                       id="bottom-position-range"
@@ -748,7 +748,7 @@ export default function App() {
                       max="40"
                       value={textPositionBottom}
                       onChange={(e) => setTextPositionBottom(parseInt(e.target.value))}
-                      className="w-full h-1.5 bg-[#E5E7EB] rounded-lg appearance-none cursor-pointer accent-amber-500"
+                      className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
                     />
                   </div>
                 </div>
@@ -756,7 +756,7 @@ export default function App() {
               </div>
 
               {/* Action Buttons: Download / Import custom */}
-              <div className="pt-4 border-t border-[#F3F4F6] flex flex-col sm:flex-row gap-3">
+              <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
                 <button
                   type="button"
                   onClick={downloadMeme}
@@ -771,13 +771,13 @@ export default function App() {
             </div>
 
             {/* Direct upload tab connector */}
-            <div className="bg-white rounded-2xl border border-[#E5E7EB] p-5 shadow-sm space-y-4">
+            <div className="bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-semibold text-[#111827] flex items-center gap-1.5">
-                  <Upload className="w-4 h-4 text-indigo-500" /> Ou importez votre photo
+                <span className="text-sm font-semibold text-slate-200 flex items-center gap-1.5">
+                  <Upload className="w-4 h-4 text-indigo-400" /> Ou importez votre photo
                 </span>
                 {selectedTemplateId === "custom" && (
-                  <span className="bg-emerald-100 text-emerald-800 text-[10px] px-2 py-0.5 rounded font-bold uppercase">
+                  <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded font-bold uppercase">
                     Active
                   </span>
                 )}
@@ -789,7 +789,7 @@ export default function App() {
                 onDragOver={handleDragOver}
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
-                className="group border border-dashed border-[#D1D5DB] hover:border-amber-500 rounded-xl p-4 text-center cursor-pointer bg-[#F9FAFB] hover:bg-amber-50/14 transition"
+                className="group border border-dashed border-slate-800 hover:border-amber-500 rounded-xl p-4 text-center cursor-pointer bg-slate-950 hover:bg-amber-500/5 transition"
               >
                 <input 
                   type="file" 
@@ -799,10 +799,10 @@ export default function App() {
                   className="hidden" 
                 />
                 <Smile className="w-8 h-8 text-indigo-400 group-hover:text-amber-500 mx-auto mb-2 transition-transform group-hover:scale-110" />
-                <p className="text-xs font-semibold text-[#4B5563] group-hover:text-amber-600">
+                <p className="text-xs font-semibold text-slate-400 group-hover:text-amber-400">
                   Cliquez ou glissez-déposez n'importe quelle photo
                 </p>
-                <p className="text-[10px] text-[#9CA3AF] mt-1">
+                <p className="text-[10px] text-slate-500 mt-1">
                   JPG, PNG ou WebP — Analyse instantanée par l'IA possible
                 </p>
               </div>
@@ -812,23 +812,23 @@ export default function App() {
         </div>
 
         {/* Templates Selection Section */}
-        <section className="bg-white rounded-2xl border border-[#E5E7EB] p-6 shadow-sm space-y-6" id="templates-section">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-[#F3F4F6]">
+        <section className="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-sm space-y-6" id="templates-section">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
             <div>
-              <h3 className="text-lg font-bold text-[#111827] flex items-center gap-2">
+              <h3 className="text-lg font-bold text-white flex items-center gap-2">
                 <Hash className="w-5 h-5 text-amber-500" />
                 <span>Sélectionner un modèle tendance ( templates )</span>
               </h3>
-              <p className="text-sm text-[#6B7280]">
+              <p className="text-sm text-slate-400">
                 Choisissez parmi nos classiques d'Internet, ou importez vos propres images ci-dessus
               </p>
             </div>
             
-            <div className="flex bg-[#F3F4F6] p-1 rounded-lg">
+            <div className="flex bg-slate-950 p-1 rounded-lg">
               <button
                 type="button"
                 onClick={() => handleSelectTemplate(MEME_TEMPLATES[Math.floor(Math.random() * MEME_TEMPLATES.length)])}
-                className="px-3 py-1.5 text-xs font-semibold rounded-md bg-white text-[#374151] shadow-xs hover:bg-[#F9FAFB] transition"
+                className="px-3 py-1.5 text-xs font-semibold rounded-md bg-slate-900 text-slate-300 shadow-xs hover:bg-slate-850 hover:text-white transition cursor-pointer"
               >
                 Modèle au hasard 🎲
               </button>
@@ -846,12 +846,12 @@ export default function App() {
                   className={`group relative text-left rounded-xl overflow-hidden border transition-all cursor-pointer ${
                     isActive 
                       ? "ring-2 ring-amber-500 border-amber-500 scale-[0.98]" 
-                      : "border-[#E5E7EB] hover:border-amber-300 hover:shadow-md"
+                      : "border-slate-800 hover:border-amber-500/50 hover:shadow-md"
                   }`}
                   id={`template-card-${template.id}`}
                 >
                   {/* Thumbnail */}
-                  <div className="aspect-square bg-gray-100 overflow-hidden relative">
+                  <div className="aspect-square bg-slate-950 overflow-hidden relative">
                     <img
                       src={template.url}
                       alt={template.name}
@@ -871,9 +871,9 @@ export default function App() {
                   </div>
 
                   {/* Description Info overlay/capsule */}
-                  <div className="p-3 bg-white">
-                    <p className="text-xs font-bold text-[#111827] truncate">{template.name}</p>
-                    <p className="text-[10px] text-[#6B7280] line-clamp-1 mt-0.5">{template.description}</p>
+                  <div className="p-3 bg-slate-950">
+                    <p className="text-xs font-bold text-slate-200 truncate">{template.name}</p>
+                    <p className="text-[10px] text-slate-400 line-clamp-1 mt-0.5">{template.description}</p>
                   </div>
                 </button>
               );
@@ -884,8 +884,8 @@ export default function App() {
       </main>
 
       {/* Styled Footer */}
-      <footer className="bg-white border-t border-[#E5E7EB] py-8 text-center" id="app-footer">
-        <div className="max-w-7xl mx-auto px-4 text-xs text-[#6B7280] space-y-2">
+      <footer className="bg-slate-950 border-t border-slate-900 py-8 text-center" id="app-footer">
+        <div className="max-w-7xl mx-auto px-4 text-xs text-slate-500 space-y-2">
           <p>© 2026 Mémologie Expérimentale AI — Conçu pour un maximum de fun en langue française 🇫🇷</p>
           <p>La technologie se base sur la vision de Gemini 3.5 Flash pour générer des idées fraîches basées sur le contexte visuel.</p>
         </div>

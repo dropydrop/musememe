@@ -803,7 +803,7 @@ export default function App() {
                   Cliquez ou glissez-déposez n'importe quelle photo
                 </p>
                 <p className="text-[10px] text-slate-500 mt-1">
-                  JPG, PNG ou WebP — Analyse instantanée par l'IA possible
+                  JPG, PNG ou WebP...
                 </p>
               </div>
             </div>

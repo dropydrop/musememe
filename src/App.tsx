@@ -406,7 +406,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-2xl font-bold tracking-tight text-white flex items-center gap-2">
-                Générateur de Mèmes <span className="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 rounded-full font-medium">MuseMeme</span>
+                MuseMeme<span className="bg-amber-500/20 text-amber-300 text-xs px-2.5 py-0.5 rounded-full font-medium">Générateur de Mèmes</span>
               </h1>
               <p className="text-xs text-slate-400">
                 Alimenté par IA : Gemini 3.5 Flash
@@ -484,7 +484,7 @@ export default function App() {
 
               {/* Quick Canvas Helpers */}
               <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-400 bg-slate-950 p-3 rounded-lg border border-slate-850">
-                <p>💡 <span className="font-semibold text-slate-300">Truc:</span> Double-cliquez pour saisir vos textes dans le volet de droite.</p>
+                <p>💡 <span className="font-semibold text-slate-300">Truc:</span> Importez vos propres images ou utilisez les modèles populaires disponibles</p>
                 <button
                   type="button"
                   onClick={downloadMeme}

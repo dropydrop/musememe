@@ -546,7 +546,7 @@ export default function App() {
                 <div className="mt-5 pt-5 border-t border-white/20 flex flex-col gap-3 animate-pulse" id="loading-panel">
                   <div className="flex items-center justify-between text-xs">
                     <span>Génération en cours...</span>
-                    <span>Français d'origine contrôlée</span>
+                    <span>Veuillez patienter</span>
                   </div>
                   <div className="w-full bg-white/10 rounded-full h-2 overflow-hidden">
                     <div className="bg-white h-full rounded-full w-2/3 animate-infinite-scroll"></div>

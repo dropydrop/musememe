@@ -399,9 +399,16 @@ export default function App() {
     }
   };
 
-  // Randomize texts using over 100 predefined offline French captions
+  const lastRandomIndex = useRef<number>(-1);
+
+  // Randomize texts using predefined offline French captions
   const handleRandomizeText = () => {
-    const randomText = RANDOM_MEME_TEXTS[Math.floor(Math.random() * RANDOM_MEME_TEXTS.length)];
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * RANDOM_MEME_TEXTS.length);
+    } while (idx === lastRandomIndex.current && RANDOM_MEME_TEXTS.length > 1);
+    lastRandomIndex.current = idx;
+    const randomText = RANDOM_MEME_TEXTS[idx];
     setTopText(randomText.top);
     setBottomText(randomText.bottom);
   };

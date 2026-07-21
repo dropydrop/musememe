@@ -30,6 +30,8 @@ export default function App() {
   const [isUppercase, setIsUppercase] = useState<boolean>(true);
   const [textPositionTop, setTextPositionTop] = useState<number>(10); // percentage from top
   const [textPositionBottom, setTextPositionBottom] = useState<number>(10); // percentage from bottom
+  const [textPositionTopX, setTextPositionTopX] = useState<number>(50); // horizontal percentage (50 = center)
+  const [textPositionBottomX, setTextPositionBottomX] = useState<number>(50); // horizontal percentage (50 = center)
 
   // AI captions states
   const [aiCaptions, setAiCaptions] = useState<string[]>([]);
@@ -194,14 +196,16 @@ export default function App() {
       if (formattedTop) {
         ctx.textBaseline = "top";
         const yPosTop = (textPositionTop / 100) * height;
-        wrapAndDrawText(ctx, formattedTop, width / 2, yPosTop, width - 40, calculatedFontSize);
+        const xPosTop = (textPositionTopX / 100) * width;
+        wrapAndDrawText(ctx, formattedTop, xPosTop, yPosTop, width - 40, calculatedFontSize);
       }
 
       // Draw Bottom Text
       if (formattedBottom) {
         ctx.textBaseline = "bottom";
         const yPosBottom = height - ((textPositionBottom / 100) * height);
-        wrapAndDrawText(ctx, formattedBottom, width / 2, yPosBottom, width - 40, calculatedFontSize, true);
+        const xPosBottom = (textPositionBottomX / 100) * width;
+        wrapAndDrawText(ctx, formattedBottom, xPosBottom, yPosBottom, width - 40, calculatedFontSize, true);
       }
     };
 
@@ -250,7 +254,7 @@ export default function App() {
   // Redraw whenever parameters change
   useEffect(() => {
     drawMeme();
-  }, [selectedImage, topText, bottomText, textSize, textColor, strokeColor, isUppercase, textPositionTop, textPositionBottom]);
+  }, [selectedImage, topText, bottomText, textSize, textColor, strokeColor, isUppercase, textPositionTop, textPositionBottom, textPositionTopX, textPositionBottomX]);
 
   // Magic Caption API Call
   const handleMagicCaption = async () => {
@@ -722,7 +726,7 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="space-y-1.5">
                     <label htmlFor="top-position-range" className="block text-xs font-medium text-slate-400 flex justify-between">
-                      <span>Espacement Haut</span>
+                      <span>Décalage vertical haut</span>
                       <span className="font-mono text-slate-500">{textPositionTop}%</span>
                     </label>
                     <input
@@ -738,7 +742,7 @@ export default function App() {
 
                   <div className="space-y-1.5">
                     <label htmlFor="bottom-position-range" className="block text-xs font-medium text-slate-400 flex justify-between">
-                      <span>Espacement Bas</span>
+                      <span>Décalage vertical bas</span>
                       <span className="font-mono text-slate-500">{textPositionBottom}%</span>
                     </label>
                     <input
@@ -748,6 +752,38 @@ export default function App() {
                       max="40"
                       value={textPositionBottom}
                       onChange={(e) => setTextPositionBottom(parseInt(e.target.value))}
+                      className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="top-horizontal-range" className="block text-xs font-medium text-slate-400 flex justify-between">
+                      <span>Décalage horizontal haut</span>
+                      <span className="font-mono text-slate-500">{textPositionTopX}%</span>
+                    </label>
+                    <input
+                      id="top-horizontal-range"
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={textPositionTopX}
+                      onChange={(e) => setTextPositionTopX(parseInt(e.target.value))}
+                      className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label htmlFor="bottom-horizontal-range" className="block text-xs font-medium text-slate-400 flex justify-between">
+                      <span>Décalage horizontal bas</span>
+                      <span className="font-mono text-slate-500">{textPositionBottomX}%</span>
+                    </label>
+                    <input
+                      id="bottom-horizontal-range"
+                      type="range"
+                      min="0"
+                      max="100"
+                      value={textPositionBottomX}
+                      onChange={(e) => setTextPositionBottomX(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
                     />
                   </div>

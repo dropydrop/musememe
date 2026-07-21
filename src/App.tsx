@@ -448,7 +448,7 @@ export default function App() {
             <div className="bg-slate-900 rounded-2xl border border-slate-800 p-5 shadow-sm flex flex-col gap-4">
               <div className="flex items-center justify-between">
                 <span className="text-xs uppercase tracking-wider font-semibold text-slate-400 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Canvas de Rendu Live
+                  <span className="w-2 h-2 rounded-full bg-emerald-500"></span> Aperçu du rendu
                 </span>
                 <span className="text-xs text-slate-500 font-mono">
                   {selectedTemplateId === "custom" ? "Image importée" : `Modèle : ${selectedTemplateId}`}

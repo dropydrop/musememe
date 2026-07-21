@@ -417,7 +417,7 @@ export default function App() {
     <div className="min-h-screen bg-slate-950 text-slate-100 font-sans antialiased flex flex-col" id="meme-generator-root">
       
       {/* Upper Brand Header */}
-      <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40 shadow-xs" id="app-header">
+      <header className="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md shadow-xs" id="app-header">
         <div className="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="bg-amber-500 text-white p-2.5 rounded-xl flex items-center justify-center shadow-md shadow-amber-500/10">

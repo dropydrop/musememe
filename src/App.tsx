@@ -733,7 +733,7 @@ export default function App() {
                       id="top-position-range"
                       type="range"
                       min="2"
-                      max="40"
+                      max="100"
                       value={textPositionTop}
                       onChange={(e) => setTextPositionTop(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"
@@ -749,7 +749,7 @@ export default function App() {
                       id="bottom-position-range"
                       type="range"
                       min="2"
-                      max="40"
+                      max="100"
                       value={textPositionBottom}
                       onChange={(e) => setTextPositionBottom(parseInt(e.target.value))}
                       className="w-full h-1.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-500"

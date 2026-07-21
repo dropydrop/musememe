@@ -293,13 +293,21 @@ export default function App() {
         });
       }
 
+      // Include template context for better AI interpretation
+      const currentTemplate = MEME_TEMPLATES.find(t => t.id === selectedTemplateId);
+      const requestBody: Record<string, any> = { image: base64Payload };
+      if (currentTemplate?.description) {
+        requestBody.templateDescription = currentTemplate.description;
+        requestBody.templateName = currentTemplate.name;
+      }
+
       // Call our server backend API
       const response = await fetch("/api/generate-captions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ image: base64Payload }),
+        body: JSON.stringify(requestBody),
       });
 
       if (!response.ok) {

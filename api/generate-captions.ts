@@ -16,7 +16,7 @@ export default async function handler(req: Request, res: Response) {
   }
 
   try {
-    const { image } = req.body;
+    const { image, templateDescription, templateName } = req.body;
 
     if (!image) {
       return res.status(400).json({ error: "L'image est requise." });
@@ -55,8 +55,12 @@ export default async function handler(req: Request, res: Response) {
       },
     };
 
-    const textPart = {
-      text: `Tu es un créateur de mèmes légendaire, extrêmement sarcastique, spirituel et comique.
+    // Build model chain with fallbacks
+    const contextLine = templateName && templateDescription
+      ? `Contexte : l'image est le template "${templateName}" qui représente "${templateDescription}". Adapte les légendes à cette scène précise.\n\n`
+      : "";
+
+    const promptMultimodal = `${contextLine}Tu es un créateur de mèmes légendaire, extrêmement sarcastique, spirituel et comique.
 Analyse cette image d'un point de vue de l'humour internet et propose précisément 5 légendes (captions) différentes, uniques, très drôles, rédigées UNIQUEMENT en français.
 Chaque légende doit être parfaitement adaptée aux expressions faciales, au ridicule, à l'ironie ou à la tension dramatique de la situation observée.
 Varie les thèmes d'humour :
@@ -65,35 +69,73 @@ Varie les thèmes d'humour :
 - Sarcasme mordant et auto-dérision du genre "Moi quand..." ou "Moi qui..." ou "POV (point de vue)..."
 - Absurde et décalé
 Garde les légendes relativement courtes (maximum 15 mots pour tenir proprement sur le mème).
+N'ajoute aucun commentaire, introduction, conclusion. Retourne strictement un tableau JSON de 5 chaînes de caractères.`;
+
+    const promptTextOnly = templateName && templateDescription
+      ? `Tu es un créateur de mèmes légendaire, extrêmement sarcastique, spirituel et comique.
+Basé UNIQUEMENT sur la description suivante d'un template de mème, propose précisément 5 légendes (captions) différentes, uniques, très drôles, rédigées UNIQUEMENT en français.
+
+Template : "${templateName}"
+Description : "${templateDescription}"
+
+Les légendes doivent coller parfaitement à la scène décrite.
+Varie les thèmes d'humour : développeur/informatique, situations gênantes du quotidien, sarcasme et auto-dérision ("Moi quand...", "Moi qui...", "POV..."), absurde et décalé.
+Garde les légendes courtes (max 15 mots).
 N'ajoute aucun commentaire, introduction, conclusion. Retourne strictement un tableau JSON de 5 chaînes de caractères.`
-    };
+      : null;
 
-    const response = await ai.models.generateContent({
-      model: "gemini-3.5-flash",
-      contents: { parts: [imagePart, textPart] },
-      config: {
-        responseMimeType: "application/json",
-        responseSchema: {
-          type: Type.ARRAY,
-          items: {
-            type: Type.STRING,
+    // Define attempts: [model, contentParts]
+    type Attempt = [string, Record<string, any>[]];
+    const attempts: Attempt[] = [
+      ["gemini-3.5-flash", [imagePart, { text: promptMultimodal }]],
+    ];
+    if (promptTextOnly) {
+      attempts.push(["gemini-3.1-flash-lite", [{ text: promptTextOnly }]]);
+    }
+
+    let lastError: any = null;
+    let captions: string[] | null = null;
+
+    for (const [model, parts] of attempts) {
+      try {
+        const aiResponse = await ai.models.generateContent({
+          model,
+          contents: { parts },
+          config: {
+            responseMimeType: "application/json",
+            responseSchema: {
+              type: Type.ARRAY,
+              items: { type: Type.STRING },
+              description: "Liste contenant exactement 5 mèmes textuels drôles en français.",
+            },
           },
-          description: "Liste contenant exactement 5 mèmes textuels drôles en français.",
-        },
-      },
-    });
+        });
 
-    const text = response.text;
-    if (!text) {
-      throw new Error("Réponse vide générée par l'IA.");
+        const text = aiResponse.text;
+        if (!text) throw new Error("Réponse vide");
+
+        const parsed = JSON.parse(text);
+        if (!Array.isArray(parsed)) throw new Error("Format invalide");
+
+        captions = parsed.slice(0, 5);
+        break;
+      } catch (err: any) {
+        lastError = err;
+        const isQuota = err.message?.includes("exhausted")
+          || err.message?.includes("quota")
+          || err.message?.includes("429")
+          || err.message?.includes("rate limit")
+          || err.status === 429;
+        if (!isQuota) break;
+        console.warn(`Quota exhausted on ${model}, retrying next model...`);
+      }
     }
 
-    const captions = JSON.parse(text);
-    if (Array.isArray(captions)) {
-      return res.json({ captions: captions.slice(0, 5), fallback: false });
-    } else {
-      throw new Error("Le format du JSON généré n'est pas un tableau.");
+    if (captions) {
+      return res.json({ captions, fallback: false });
     }
+
+    throw lastError || new Error("Aucun modèle disponible.");
 
   } catch (error: any) {
     console.error("Erreur génération légendes:", error);
